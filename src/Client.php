@@ -18,9 +18,15 @@ class Client
     const METHOD_PU = 'PUT';
     const METHOD_DELETE = 'DELETE';
 
+    public function __construct()
+    {
+        // Empty constructor for now
+    }
+
     /**
      * @param $url
      * @param array $options
+     * @return $this
      */
     public function get($url, array $options = [])
     {
@@ -49,6 +55,10 @@ class Client
         $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         curl_close($curl);
 
+        $this->setResponse($exec);
+        $this->setBody($body);
+        $this->setStatusCode($status);
+        return $this;
     }
 
     /**
@@ -75,5 +85,53 @@ class Client
         $this->verifyHost = array_key_exists('verify_peer', $options)
             ? $options['verify_peer']
             : false;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatusCode()
+    {
+        return $this->statusCode;
+    }
+
+    /**
+     * @param mixed $statusCode
+     */
+    public function setStatusCode($statusCode)
+    {
+        $this->statusCode = $statusCode;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
+
+    /**
+     * @param mixed $body
+     */
+    public function setBody($body)
+    {
+        $this->body = $body;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    /**
+     * @param mixed $response
+     */
+    public function setResponse($response)
+    {
+        $this->response = $response;
     }
 }
