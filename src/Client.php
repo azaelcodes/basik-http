@@ -7,10 +7,27 @@ class Client
     private $body;
     private $response;
 
+    /**
+     * @var array as ['query' => []]
+     */
     private $query;
+
+    /**
+     * @var array header as ['Content-Type: application/json']
+     */
     private $header;
+
+    /**
+     * @var integer
+     */
     private $timeout;
+    /**
+     * @var boolean
+     */
     private $verifyHost;
+    /**
+     * @var boolean
+     */
     private $verifyPeer;
 
     const METHOD_POST = 'POST';
@@ -30,7 +47,7 @@ class Client
      */
     public function get($url, array $options = [])
     {
-        $this->formatOptions();
+        $this->formatOptions($options);
 
         // Curl Options
         $curlOptions = [
@@ -72,7 +89,7 @@ class Client
 
         $this->header = array_key_exists('header', $options)
             ? $options['header']
-            : 'Content-Type: application/json';
+            : ['Content-Type: application/json'];
 
         $this->timeout = array_key_exists('timeout', $options)
             ? $options['timeout']
@@ -104,11 +121,20 @@ class Client
     }
 
     /**
+     * @param string $option
      * @return mixed
      */
-    public function getBody()
+    public function getBody($option = 'raw')
     {
-        return $this->body;
+        $body = $this->body;
+        switch ($option) {
+            case 'array':
+                return json_decode($body, true);
+            case 'json':
+                return json_encode($body);
+            case 'raw':
+                return $body;
+        }
     }
 
     /**
