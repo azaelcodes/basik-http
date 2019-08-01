@@ -131,7 +131,7 @@ class Client
             case 'array':
                 return json_decode($body, true);
             case 'json':
-                return json_encode($body);
+                return json_encode($body, JSON_PRETTY_PRINT);
             case 'raw':
                 return $body;
         }
