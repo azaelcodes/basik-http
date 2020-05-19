@@ -16,6 +16,9 @@ $queryParams = [
     ]
 ];
 
-$client->get($url, $queryParams);
-$responseArray = $client->getBody('array');
-print_r($responseArray);
+$uriFactory = (new \AzaelCodes\BasikHttp\Factories\UriFactory())->createUri('https://postman-echo.com/get?query=foo&bar=foo');
+
+
+//$client->get($url, $queryParams);
+//$responseArray = $client->getBody('array');
+//print_r($responseArray);
