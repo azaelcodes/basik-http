@@ -32,7 +32,11 @@ class Request implements RequestInterface
         $this->uri = $uri;
     }
 
-    public function make()
+    /**
+     * @param array $payload
+     * @return ResponseInterface
+     */
+    public function make(array $payload = [])
     {
         $curl = curl_init();
         curl_setopt_array($curl, [

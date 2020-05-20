@@ -26,14 +26,24 @@ class HttpClient
     }
 
     /**
+     * @param $url
+     * @param array $payload
+     */
+    public function post($url, array $payload)
+    {
+        return $this->makeRequest('POST', $url, $payload);
+    }
+
+    /**
      * @param string $method
      * @param string $url
+     * @param array $payload
      * @return mixed
      */
-    private function makeRequest(string $method, string $url)
+    private function makeRequest(string $method, string $url, array $payload = [])
     {
         $uriFactory     = (new UriFactory())->createUri($url);
         $requestFactory = (new RequestFactory())->createRequest($method, $uriFactory);
-        return $requestFactory->make();
+        return $requestFactory->make($payload);
     }
 }
