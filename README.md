@@ -1,5 +1,6 @@
 # basik-http - A simple yet powerful Http Client for PHP.
-Okurrr!
+
+In the works PSR-Compliance Branch https://github.com/azaelcodes/basik-http/pull/1
 
 ## A simple GET request
 ```php
