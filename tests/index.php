@@ -1,12 +1,12 @@
 <?php
 require '../vendor/autoload.php';
 
-use AzaelCodes\BasikHttp\Client;
+use AzaelCodes\BasikHttp\HttpClient;
 
 
 
-$client = new Client();
-$url    = 'https://postman-echo.com/get';
+$client = new HttpClient();
+$url    = 'https://postman-echo.com/get?foo=bar';
 
 // Get request with query parameters as array
 $queryParams = [
@@ -16,7 +16,7 @@ $queryParams = [
     ]
 ];
 
-$uriFactory = (new \AzaelCodes\BasikHttp\Factories\UriFactory())->createUri('https://postman-echo.com/get?query=foo&bar=foo');
+echo $client->get($url);
 
 
 //$client->get($url, $queryParams);

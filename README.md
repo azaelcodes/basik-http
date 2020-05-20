@@ -3,9 +3,9 @@ Okurrr!
 
 ## A simple GET request
 ```php
-use AzaelCodes\BasikHttp\Client;
+use AzaelCodes\BasikHttp\HttpClient;
 
-$client = new Client();
+$client = new HttpClient();
 $url    = 'https://postman-echo.com/get';
 
 // GET request with query parameters as array

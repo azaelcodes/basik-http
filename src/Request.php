@@ -26,18 +26,13 @@ class Request implements RequestInterface
         $this->uri = $uri;
     }
 
-    public function get()
+    public function make()
     {
-        $request = file_get_contents($this->uri->getQuery());
+        return $this->uri->getQuery();
     }
 
     private function post()
     {
-    }
-
-    private function make()
-    {
-        return 'Request made';
     }
 
     public function getProtocolVersion()
