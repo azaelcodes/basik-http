@@ -6,6 +6,7 @@ namespace AzaelCodes\BasikHttp;
 
 use AzaelCodes\BasikHttp\Factories\RequestFactory;
 use AzaelCodes\BasikHttp\Factories\UriFactory;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class HttpClient

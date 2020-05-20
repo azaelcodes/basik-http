@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace AzaelCodes\BasikHttp;
 
+use AzaelCodes\BasikHttp\Factories\ResponseFactory;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
 
@@ -40,6 +42,8 @@ class Request implements RequestInterface
         ]);
 
         $response = curl_exec($curl);
+
+        $response = (new ResponseFactory())->createResponse(200, '');
         return $response;
     }
 
