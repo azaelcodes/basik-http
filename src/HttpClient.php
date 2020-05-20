@@ -14,6 +14,8 @@ use AzaelCodes\BasikHttp\Factories\UriFactory;
 class HttpClient
 {
     /**
+     * Make an HTTP GET Request
+     *
      * @param $url
      * @return mixed
      */

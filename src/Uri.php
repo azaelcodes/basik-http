@@ -36,6 +36,14 @@ class Uri implements UriInterface
         $this->uri = $uri;
     }
 
+    /**
+     * @return string
+     */
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
     public function getScheme()
     {
         return strtolower($this->uriParts['scheme']) ?? '';

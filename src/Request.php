@@ -8,6 +8,10 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
 
+/**
+ * Class Request
+ * @package AzaelCodes\BasikHttp
+ */
 class Request implements RequestInterface
 {
     /**
@@ -28,7 +32,15 @@ class Request implements RequestInterface
 
     public function make()
     {
-        return $this->uri->getQuery();
+        $curl = curl_init();
+        curl_setopt_array($curl, [
+            CURLOPT_CUSTOMREQUEST => $this->method,
+            CURLOPT_URL => $this->uri->getUri(),
+            CURLOPT_RETURNTRANSFER => true,
+        ]);
+
+        $response = curl_exec($curl);
+        return $response;
     }
 
     private function post()
